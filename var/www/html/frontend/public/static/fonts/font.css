@@ -1,0 +1,10 @@
+@font-face {
+	font-family: 'UTMCaviar';
+	src: local('UTMCaviar'), url('./UTMCaviar.woff') format('woff');
+}
+/* use this class to attach this font to any element i.e. <p class="fontsforweb_fontid_79355">Text with this font applied</p> */
+.fontsforweb_fontid_79355 {
+	font-family: 'UTMCaviar' !important;
+}
+
+/* Font downloaded from FontsForWeb.com */

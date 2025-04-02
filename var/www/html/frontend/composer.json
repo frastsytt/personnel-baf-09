@@ -1,0 +1,19 @@
+{
+    "name": "cptup/scenario",
+    "require": {
+        "slim/slim": "^4.12",
+        "slim/psr7": "^1.6",
+        "selective/basepath": "^2.2",
+        "slim/php-view": "^3.2",
+        "guzzlehttp/guzzle": "^7.9"
+        
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src",
+            "App\\Models\\": "src/Models/",
+            "App\\Classes\\": "src/Classes/",
+            "Templates\\": "/templates/"
+        }
+    }
+}
