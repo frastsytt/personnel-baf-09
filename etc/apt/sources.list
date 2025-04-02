@@ -1,0 +1,15 @@
+# The original sources.list is backed up as /etc/apt/sources.list_backup
+
+deb https://nexus.tech.ccdcoe.org/repository/jammy/ jammy main restricted
+deb https://nexus.tech.ccdcoe.org/repository/jammy/ jammy universe
+deb https://nexus.tech.ccdcoe.org/repository/jammy/ jammy multiverse
+
+deb https://nexus.tech.ccdcoe.org/repository/jammy-updates/ jammy-updates main restricted
+deb https://nexus.tech.ccdcoe.org/repository/jammy-updates/ jammy-updates universe
+deb https://nexus.tech.ccdcoe.org/repository/jammy-updates/ jammy-updates multiverse
+
+deb https://nexus.tech.ccdcoe.org/repository/jammy-security/ jammy-security main restricted
+deb https://nexus.tech.ccdcoe.org/repository/jammy-security/ jammy-security universe
+deb https://nexus.tech.ccdcoe.org/repository/jammy-security/ jammy-security multiverse
+
+deb https://nexus.tech.ccdcoe.org/repository/jammy-backports/ jammy-backports main restricted universe multiverse

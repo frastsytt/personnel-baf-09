@@ -1,0 +1,5 @@
+Docker Backup Metadata - Wed Apr  2 10:20:18 AM UTC 2025
+----------------------------------
+Tracking configuration files...
+Tracking /etc/mysql/my.cnf
+Tracking /etc/nginx/nginx.conf

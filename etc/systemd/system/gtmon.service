@@ -1,0 +1,18 @@
+[Unit]
+Description=Green team monitoring daemon for cyberexercise
+After=network-online.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+Restart=always
+RestartSec=10
+Nice=-5
+PIDFile=/home/gt/gtmon/gtmon.pid
+ExecStart=/home/gt/gtmon/gtmon
+WorkingDirectory=/home/gt/gtmon
+Environment=DOCKER_API_VERSION=1.41
+
+[Install]
+WantedBy=multi-user.target

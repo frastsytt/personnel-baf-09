@@ -1,0 +1,24 @@
+network:
+  version: 2
+  ethernets:
+    baf_dmz:
+      set-name: baf_dmz
+      match:
+        macaddress: 00:50:56:89:6d:e7
+      dhcp4: false
+      dhcp6: false
+      accept-ra: false
+      addresses:
+        - 100.96.9.17/26
+        - "2a07:1182:9:10::17/64"
+      routes:
+        - to: default
+          via: 100.96.9.1
+        - to: default
+          via: "2a07:1182:9:10::1"
+      nameservers:
+        addresses:
+          - 100.95.95.4
+          - "2a07:1181:95:95::4"
+        search:
+          - baf.09.berylia.org
