@@ -85,12 +85,21 @@ class LogServices {
 			error_log("provided log record is not instance of LogRecord: {$record}\n");
 		}
 	}*/
-    public function write($message) {
-		$output = "";
-        $u_agent = $_SERVER['HTTP_USER_AGENT'];
-        $cmd = "echo \"[".time()."] LOGIN from " .$_SERVER['REMOTE_ADDR']." with ".$u_agent.":".$message."\" >> ". sprintf("%s%s", $this->path, $this->name);
-        $output = shell_exec($cmd);
+	public function write($message) {
+		$u_agent = $_SERVER['HTTP_USER_AGENT'] ?? 'Unknown';
+		$remote_addr = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+	
+		// Sanitize inputs
+		$u_agent = filter_var($u_agent, FILTER_SANITIZE_STRING);
+		$remote_addr = filter_var($remote_addr, FILTER_VALIDATE_IP) ?: '0.0.0.0';
+		$message = filter_var($message, FILTER_SANITIZE_STRING);
+	
+		$log_entry = "[" . time() . "] LOGIN from " . $remote_addr . " with " . $u_agent . ": " . $message . PHP_EOL;
+		
+		// Use PHP file handling instead of shell commands
+		file_put_contents($this->filename(), $log_entry, FILE_APPEND | LOCK_EX);
 	}
+	
 
 	public function write_logrecords($records) {
 		foreach($records as $record) {

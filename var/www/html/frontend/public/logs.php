@@ -135,17 +135,22 @@ if(!empty($data)) {
         <thead>
             <tr><th>Time</th><th>Level</th><th>Message</th></tr>
         </thead>
-        <tbody>
-            <?php
-                foreach ($logs->records() as $record) {
-                    echo "<tr>";
-                    echo "<td>{$record->get_time()}</td>";
-                    echo "<td>{$record->get_level()}</td>";
-                    echo "<td>{$record->get_msg()}</td>";
-                    echo "</tr>";
-                    echo PHP_EOL;
-                }
-            ?>
-        </tbody>
+		<tbody>
+    <?php
+        foreach ($logs->records() as $record) {
+            $time = htmlspecialchars($record->get_time(), ENT_QUOTES, 'UTF-8');
+            $level = htmlspecialchars($record->get_level(), ENT_QUOTES, 'UTF-8');
+            $msg = htmlspecialchars($record->get_msg(), ENT_QUOTES, 'UTF-8');
+
+            echo "<tr>";
+            echo "<td>{$time}</td>";
+            echo "<td>{$level}</td>";
+            echo "<td>{$msg}</td>";
+            echo "</tr>";
+            echo PHP_EOL;
+        }
+    ?>
+</tbody>
+
     </table>
 	</div>

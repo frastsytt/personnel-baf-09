@@ -226,21 +226,24 @@ $app->get('/list', function (Request $request, Response $response){
 });
 $app->get('/list-directory/{id}', function (Request $request, Response $response, array $args) {
     $userinfo = new UserInfo();
-    $username =  $userinfo->getUNamebyID($args['id']);
-    $directory = __DIR__ . '/users/' . $username.'/';
+    $username = preg_replace('/[^a-zA-Z0-9_-]/', '', $userinfo->getUNamebyID($args['id'])); // Allow only safe characters
+
+    $baseDirectory = realpath(__DIR__ . '/users/'); 
+    $directory = realpath(__DIR__ . '/users/' . $username);
+
+    if (!$directory || strpos($directory, $baseDirectory) !== 0) {
+        return $response->withStatus(403)->getBody()->write("Access denied");
+    }
 
     if (!is_dir($directory)) {
-        $response->getBody()->write("Directory non trovata");
-        return $response->withStatus(404);
+        return $response->withStatus(404)->getBody()->write("Directory non trovata");
     }
 
     $files = array_diff(scandir($directory), array('..', '.')); 
 
-    
-    $response->getBody()->write(json_encode($files));
-    return $response
-        ->withHeader('Content-Type', 'application/json');
+    return $response->withHeader('Content-Type', 'application/json')->write(json_encode($files));
 });
+
 $app->any("/logs",  function (Request $request, Response $response) use ($renderer){
     return $renderer->render($response, "pippo.php");
 
